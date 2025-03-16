@@ -17,8 +17,8 @@ export const Header=()=>
       href:"/pets"
     },
     {
-      name:"  Phụ kiện",
-      href:"/petac"
+      name:"  Giới thiệu",
+      href:"/about"
     },
     {
       name:"    Liên hệ",

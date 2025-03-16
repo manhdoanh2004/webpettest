@@ -1,4 +1,5 @@
 'use client'
+import Link from "next/link";
 import section3bg1 from "../../assets/Img/section-3_bg1.svg";
 import section3bg2 from "../../assets/Img/section-3_bg2.svg";
 import section3bg3 from "../../assets/Img/section-3_bg3.svg";
@@ -24,13 +25,13 @@ export const Section3=()=>
               với việc bạn có thêm niềm vui mới. Chúng tôi có hơn 200 con thú
               cưng khác nhau có thể đáp ứng nhu cầu của bạn!
               <div className="section-3__buttons">
-                <a className="button button--outline" href="#">
+                <Link className="button button--outline" href="/about">
                   Giới Thiệu <FaRegCirclePlay />
-                </a>
-                <a className="button" href="#">
+                </Link>
+                <Link className="button" href="/pets">
                
                   Khám Phá Ngay
-                </a>
+                </Link>
               </div>
             </div>
             <img className="section-3__bg2" src={section3bg2.src} alt="" />

@@ -1,5 +1,4 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+
 import { Section1 } from "./section1";
 import style from "../../assets/scss/page.module.scss"
 import { Section2 } from "./section2";

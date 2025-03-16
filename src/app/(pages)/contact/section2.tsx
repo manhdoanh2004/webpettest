@@ -132,7 +132,7 @@ export const Section2 = () => {
                 }
             }
            
-            // name.value=email.value=phonenumber.value=message.value="";
+         
            
           
     }

@@ -18,7 +18,7 @@ export const  ClientPet:any=()=>
     fetchData();
   }, []);
 
-  console.log(products)
+ 
 return(
   <>
   <h1> Trang Pet</h1>
