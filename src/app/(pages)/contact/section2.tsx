@@ -13,10 +13,11 @@ export const Section2 = () => {
 
     interface formData
     {
-        fullname:string,
-        email?:string,
-        phonenumber:string,
-        message:string
+        fullName:string,
+        email:string,
+        phone:string,
+        address:string,
+        content:string
     }
 
     const handleSubmit=(event:any)=>
@@ -25,12 +26,14 @@ export const Section2 = () => {
             const name=event.target.name;
             const email=event.target.email;
             const phonenumber=event.target.phonenumber;
+            const address=event.target.address;
             const message=event.target.message;
 
 
             const FullName:string =name.value;
             const Email:string =email.value;
             const PhoneNumber:string =phonenumber.value;
+            const Address:string =address.value;
             const Message:string =message.value;
 
             if(FullName=="")
@@ -97,35 +100,50 @@ export const Section2 = () => {
                       }
                       else
                       {
-                        if(Message=="")
+                        if(Address=="")
                         {
-                          message.style.borderColor="red";
-                          message.focus()
-                          Swal.fire({
-                            title: 'Lỗi!',
-                            text: 'Vui lòng nhập vào dữ liệu  của bạn ',
-                            icon: 'error',
-                            confirmButtonText: 'Oke'})
-
+                          address.style.borderColor="red";
+                        address.focus()
+                        Swal.fire({
+                          title: 'Lỗi!',
+                          text: 'Vui lòng nhập vào địa chỉ của bạn  ',
+                          icon: 'error',
+                          confirmButtonText: 'Oke'})
                         }
                         else
                         {
-                          const data ={
-                            fullname:FullName,
-                            email:Email,
-                            phonenumber:PhoneNumber,
-                            message:Message
-                          }
-                          console.log(data);
-                            name.value=email.value=phonenumber.value=message.value="";
-                            Swal.fire({
-                              position: "center",
-                              icon: "success",
-                              title: "Gửi thành công ",
-                              showConfirmButton: false,
-                              timer: 1500
-                            });
+                          if(Message=="")
+                            {
+                              message.style.borderColor="red";
+                              message.focus()
+                              Swal.fire({
+                                title: 'Lỗi!',
+                                text: 'Vui lòng nhập vào dữ liệu  của bạn ',
+                                icon: 'error',
+                                confirmButtonText: 'Oke'})
+    
+                            }
+                            else
+                            {
+                              const data:formData ={
+                                fullName:FullName,
+                                email:Email,
+                                phone:PhoneNumber,
+                                address:Address,
+                                content:Message
+                              }
+                              console.log(data);
+                                name.value=email.value=phonenumber.value=message.value=address.value="";
+                                Swal.fire({
+                                  position: "center",
+                                  icon: "success",
+                                  title: "Gửi thành công ",
+                                  showConfirmButton: false,
+                                  timer: 1500
+                                });
+                            }
                         }
+                    
                       }
                     }
                   }
@@ -224,6 +242,7 @@ export const Section2 = () => {
                 <input type="text" name="name" placeholder="Ho ten" onKeyUp={(event)=>handleKeyup(event)} />
                 <input type="text" name="email" placeholder="Email" onKeyUp={(event)=>handleKeyup(event)} />
                 <input type="text" name ="phonenumber" placeholder=" Số điện thoại" onKeyUp={(event)=>handleKeyup(event)} />
+                <input type="text" name ="address" placeholder="Địa chỉ" onKeyUp={(event)=>handleKeyup(event)} />
                 <textarea placeholder="Nhập tin nhắn" name="message" onKeyUp={(event)=>handleKeyup(event)} />
                 <button>Gửi </button>
               </form>

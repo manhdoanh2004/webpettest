@@ -32,10 +32,10 @@ export const Section1 = () => {
                 nhu cầu của bạn!
               </p>
               <div className="section-1__buttons">
-                <Link className="button button--outline" href="#">
+                <Link className="button button--outline" href="/about">
                   Giới Thiệu <FaRegCirclePlay />
                 </Link>
-                <Link className="button" href="/contact">
+                <Link className="button" href="/pets">
                   Khám Phá Ngay
                 </Link>
               </div>

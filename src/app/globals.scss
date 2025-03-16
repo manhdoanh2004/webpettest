@@ -2978,6 +2978,261 @@ a
 //EndContact-page
 
 
+//About-pgae
+.about-section1
+{
+   overflow: hidden;
+  
+ 
+   &__listitem
+   {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 43px;
+      position: relative;
+      margin-top: 42px;
+   }
+   .button
+   {
+      display: inline-block;
+      padding: 17px 40px;
+      border-radius: 12px;
+      margin-bottom: 50px;
+      background-color:#efa927 ;
+   }
+   &__content
+   {
+      position: relative;
+      z-index: 5;
+      width: 55%;
+      padding-left: 30px;
+   }
+   &__nameshop
+   {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 100%;
+      color:#F7DBA7 ;
+      margin-bottom: 5px;
+   }
+   &__title
+   {
+      font-size: 54px;
+      font-weight: 700;
+      line-height: 100%;
+      margin-bottom: 45px;
+   }
+   &__desc
+   {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 160%;
+      margin-bottom: 45px;
+   }
+   &__imgmain
+   {
+      position: relative;
+      z-index: 2;
+      display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 89%;
+    
+    
+   }
+   &__main
+   {
+      position: relative;
+      flex: 1;
+   }
+   &__bg4
+   {
+      position: absolute;
+      top:0%;
+      right: 0%;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+ 
+   }
+   &__bg1
+   {
+      position: absolute;
+      top: 27%;
+      left: 0%;
+   }
+   &__bg2
+   {
+      position: absolute;
+      top: -21%;
+    left: 32%;
+   }
+   &__bg3
+   {
+      position: absolute;
+  
+      left: 19%;
+      bottom: -5%;
+   }
+
+}
+
+
+.about-section2
+{
+   padding: 60px 0px;
+   &__title
+   {
+      margin-bottom: 20px;
+      text-align: left;
+   }
+   &__listitem
+   {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 80px;
+      width: 100%;
+   }
+   &__descitemright, &__descitemleft
+   {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 160%;
+    
+   }
+   &__descitemright
+   {
+    width: 175%;  
+   }
+   &__descitemleft
+   {
+   
+   }
+   &__infors
+   {
+      display: flex;
+      justify-content: flex-start;
+      gap: 150px;
+      flex-wrap: wrap;
+   }
+   &__infortitle
+   {
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 160%;
+      color: #F9A843;
+   }
+   &__infordesc
+   {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 160%;
+      color: #000000CC;
+   }
+
+}
+
+
+.about-section3
+{
+   padding: 60px 0px;
+   text-align: center;
+   &__title
+   {
+      margin-bottom: 40px;
+   }
+   &__team
+   {
+      display: flex; 
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+   }
+   &__member
+   {
+      display: inline-block;
+   }
+   &__memberimg
+   {
+         
+         aspect-ratio: 1/1;
+         border-radius: 20px;
+         img
+         {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+         }
+   }
+   &__namemember
+   {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 48px;
+      color: #000000;
+    
+   }
+   &__position
+   {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 48px;
+      color:#00000099 ;
+   }
+}
+.about-section4
+{
+   padding-bottom:40px ;
+   &__videopet
+   {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      video
+      {
+         width: 100%;
+      }
+   }
+}
+
+.about-section5
+{
+   padding-bottom:40px ;
+   text-align: center;
+   &__title
+   {
+      font-weight: 600;
+      font-size: 40px;
+      line-height: 48px;
+   }
+   &__listinstagram
+   {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+   }
+   &__item
+   {
+      width: 276px;
+      height:  276px;
+    
+      img
+      {  cursor: pointer;
+         width: 100%;
+         height: 100%;
+         aspect-ratio:1/1;
+         object-fit: cover;
+         
+      }
+   }
+}
+//End About-pgae
 
 
 
