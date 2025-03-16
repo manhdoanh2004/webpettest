@@ -13,8 +13,8 @@ export const Section2 = () => {
 
     interface formData
     {
-        fullname:String,
-        email?:String,
+        fullname:string,
+        email?:string,
         phonenumber:string,
         message:string
     }
