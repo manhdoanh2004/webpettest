@@ -1,7 +1,8 @@
 import path from "../../../../public/Frame.svg"
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ClientPet } from "./Clientpet";
+
+import { Section1 } from "./section1";
+import { Section2 } from "./section2";
 export const metadata: Metadata = {
     title: " Danh sách  thú cưng ",
     description: "",
@@ -24,7 +25,9 @@ export default  function Petlist()
   
 return(
   <>
- <ClientPet/>
+ {/* <ClientPet/> */}
+ <Section1/>
+ <Section2/>
   </>
 )
 }

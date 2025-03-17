@@ -2089,9 +2089,12 @@ a
          color:$--color-primary;
          background-color: transparent;
          border-radius: 8px;
+         display: none;
          
          border: 0px;
          padding: 5px 13px;
+         cursor: pointer;
+       
 
 
          &:hover
@@ -2102,10 +2105,15 @@ a
       }
   }
 
+  .button--item
+  {
+   display: inline-block;
+  }
   .button--Act
   {
      background-color: $--color-primary;
      color: #EBEEEF;
+     display: inline-block;
   }
    &__image 
    {
