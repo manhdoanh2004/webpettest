@@ -34,15 +34,15 @@ export const Section2 = () => {
     fetchData();
 
         //lấy ra trang hiện tại ,nếu không có thì mặc định trang hiện tại là 1 
-        const page=searchParams.get('page');
+        // const page=searchParams.get('page');
                 
-        if(!page)
-        {
-            const params = new URLSearchParams(searchParams);
-            params.set('page', '1');
-            router.push(`${pathname}?${params.toString()}`);
-            setskip(0);
-        }
+        // if(!page)
+        // {
+        //     const params = new URLSearchParams(searchParams);
+        //     params.set('page', '1');
+        //     router.push(`${pathname}?${params.toString()}`);
+        //     setskip(0);
+        // }
 
 
   }, [limit,skip]);
@@ -58,9 +58,9 @@ export const Section2 = () => {
     
 //   console.log(pagination)
   const handlePageChange = (newPage:any) => {
-     const params = new URLSearchParams(searchParams);
-        params.set('page', newPage);
-     router.push(`${pathname}?${params.toString()}`);
+    //  const params = new URLSearchParams(searchParams);
+    //     params.set('page', newPage);
+    //  router.push(`${pathname}?${params.toString()}`);
      setskip(limit*newPage)
   };
 
@@ -141,17 +141,12 @@ export const Section2 = () => {
                 <button className="button--item" onClick={()=>handlePageChange(currentPage>1?currentPage-1:currentPage)}>
                 <FaArrowLeft />
                 </button>
-                {/* <button className="button--Act">1</button>
-                <button>2</button>
-                <button>3</button>
-                <button className="button--Act2">4</button>
-                <button>..</button>
-                <button>28</button> */}
+       
                 {pagination?(<>
                 {
                     Array(parseInt(pagination)).fill("").map((item,index)=>
                         <button key={index+1} className={`${currentPage==index+1?"button--Act":""}`} >{index+1}</button> )
-                }</>):(<></>)}
+                }</>):(<>Loading....</>)}
                 <button className="button--item" onClick={()=>handlePageChange(currentPage+1)}>
                 <FaArrowRight />
                 </button>

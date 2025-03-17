@@ -15,9 +15,9 @@ export const metadata: Metadata = {
 export default async function Petdetail( {params}:any)
 {
  const {petid}= await params
-//   const res=await fetch(`https://dummyjson.com/products/${petid}`);
-//   const data=await res.json();
-//  console.log(data)
+  const res=await fetch(`https://dummyjson.com/products/${petid}`);
+  const data=await res.json();
+ console.log(data)
     return(
         <>
         <h1> Trang petdetail</h1>
