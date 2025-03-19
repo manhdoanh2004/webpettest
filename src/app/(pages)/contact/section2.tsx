@@ -239,7 +239,7 @@ export const Section2 = () => {
                 </p>
               </div>
               <form className="contact-section2__rightform" onSubmit={(event)=>handleSubmit(event)}>
-                <input type="text" name="name" placeholder="Ho ten" onKeyUp={(event)=>handleKeyup(event)} />
+                <input type="text" name="name" placeholder="Họ tên" onKeyUp={(event)=>handleKeyup(event)} />
                 <input type="text" name="email" placeholder="Email" onKeyUp={(event)=>handleKeyup(event)} />
                 <input type="text" name ="phonenumber" placeholder=" Số điện thoại" onKeyUp={(event)=>handleKeyup(event)} />
                 <input type="text" name ="address" placeholder="Địa chỉ" onKeyUp={(event)=>handleKeyup(event)} />

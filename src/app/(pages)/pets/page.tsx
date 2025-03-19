@@ -25,7 +25,7 @@ export default  function Petlist()
   
 return(
   <>
- {/* <ClientPet/> */}
+
  <Section1/>
  <Section2/>
   </>

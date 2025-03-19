@@ -54,7 +54,7 @@ a
       align-items: center;
       gap:16px;
 
-      i
+      svg
       {
          font-size: 10px;
          color:$--color-text-light
@@ -2105,6 +2105,14 @@ a
       }
   }
 
+  .button--dos
+  {
+   display: inline-block;
+  }
+  .button--hiddendos
+{
+   display: none;
+}
   .button--item
   {
    display: inline-block;
@@ -2293,6 +2301,7 @@ a
       width: 100%;
       object-fit: cover;
       aspect-ratio: 560/476;
+      border-radius: 20px;
    }
    border-radius: 10px;
 }
@@ -2399,13 +2408,15 @@ a
       display: grid;
       grid-template-columns: repeat(4,1fr);
       gap:12px;
+   
 
-      img
+      .myswiper
       {
          width: 100%;
          height: 100%;
          object-fit: cover;
          aspect-ratio: 248/340;
+      
       }
 
   }
@@ -2454,7 +2465,7 @@ a
       width: 100%;
       flex: none;
     }
-
+ 
     &__right
     {
       box-shadow: 0px -6px 6px 0px #0000000F;
@@ -2469,12 +2480,7 @@ a
 
 @media  (max-width:767.98px) {
   
-   &__customer-image
-   {
-     
-       grid-template-columns: repeat(2,1fr);
-      
-   }
+ 
    
 }
 

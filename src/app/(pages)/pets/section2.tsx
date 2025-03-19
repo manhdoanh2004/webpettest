@@ -1,74 +1,49 @@
 "use client";
 import Link from "next/link";
 import { Fillter } from "./fillter";
-import fillter from "../../assets/Img/Filter.svg"
+import fillter from "../../assets/Img/Filter.svg";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-// import { FaArrowRight } from "react-icons/fa";
-// import { FaArrowLeft } from "react-icons/fa";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
 
 export const Section2 = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-    const [productsList,setProductList]=useState<any| undefined>(undefined);
+  const [limit, setLimit] = useState(9);
+  const [skip, setskip] = useState(0);
+  const [pagination, setPagination] = useState<any | undefined>(undefined);
+  const [productList, setProductList] = useState<any | undefined>(undefined);
+  const [currentPage, setCurrentPage] = useState(1);
 
-    useEffect(()=>
-    {
-    
-        async function  fectchData()
-        {
-            const res= await fetch('/api/products');
-            const data=await res.json();
-  
-            setProductList(data);
-        }
-        fectchData();
-    },[])
-//     const router = useRouter();
-//     const pathname = usePathname();
-//     const searchParams = useSearchParams();
+  useEffect(() => {
+    const page = Number(searchParams.get("page")) || 1;
+    setCurrentPage(page);
+    setskip(limit * (page - 1));
+  }, [searchParams, limit]);
 
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch(
+        `https://dummyjson.com/products?limit=${limit}&skip=${skip}&select=title,price,rating,stock,thumbnail`
+      );
+      const data = await res.json();
+      setProductList(data);
+      setPagination(Math.ceil(parseInt(data.total) / limit));
+    }
+    fetchData();
+  }, [skip, limit]);
 
+  const handlePageChange = (newPage: any) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", newPage);
+    router.push(`${pathname}?${params.toString()}`);
+  };
 
-//     const [limit,setLimit]=useState(9);// số item giới hạn hiển thị trang 1 trang 
-//     const [skip,setskip]=useState(0);// số item bỏ qua 
-              
-//     const [pagination,setPagination]=useState<any|undefined>(undefined);// số trang sản phẩm
-//   const [productList, setProductList] = useState<any | undefined>(undefined);//danh sách sản phẩm 
- 
-//   useEffect(() => {
-   
-//     async function fetchData() {
-//       const res = await fetch(
-//         `https://dummyjson.com/products?limit=${limit}&skip=${skip}&select=title,price,rating,stock,thumbnail`
-//       );
-//       const data = await res.json();
-//       setProductList(data);
-//       setPagination(Math.ceil(parseInt(data.total)/limit));
-//     }
-//     fetchData();
-
-     
-
-//   }, [limit,skip]);
-
-
- 
-//     const currentPage = Number(searchParams.get('page')) || 1;
- 
-
-  
-
-
-    
-//   console.log(pagination)
-//   const handlePageChange = (newPage:any) => {
-//     //  const params = new URLSearchParams(searchParams);
-//     //     params.set('page', newPage);
-//     //  router.push(`${pathname}?${params.toString()}`);
-//      setskip(limit*newPage)
-//   };
-
+  console.log(pagination);
   return (
     <>
       <section className="sp-section-1">
@@ -84,135 +59,139 @@ export const Section2 = () => {
                 </div>
               </div>
               <div className="sp-section-1__list-iteam">
-              {/* {productList?(<>{
-                  productList.products.map((item:any)=>( <div className="product-item" key={item.id}>
-                    <div className="section-2__image">
-                     
-                      <Link href={`/pets/${item.id}`}>
-                        <img src={item.thumbnail} alt={item.title} />
-                      </Link>
-                    </div>
-                    <div className="section-2__content">
-                      <h3 className="section-2__ptitl">{item.title}</h3>
-                      <div className="section-2__desc">
-                        <div className="section-2__descleft">
-                          <div className="section-2__gender">Giống:</div>
-                          <div className="section-2__namegender">{item.rating}</div>
+                {productList ? (
+                  <>
+                    {productList.products.map((item: any) => (
+                      <div className="product-item" key={item.id}>
+                        <div className="section-2__image">
+                          <Link href={`/pets/${item.id}`}>
+                            <img src={item.thumbnail} alt={item.title} />
+                          </Link>
                         </div>
-                        <div className="section-2__dos"></div>
-                        <div className="section-2__desc-right">
-                          <div className="section-2__age">Tuổi</div>
-                          <div className="section-2__nage">{item.stock<10?`0${item.age}`:item.age} Tháng </div>
-                        </div>
-                      </div>
-                      <div className="section-2__price">{item.price.toLocaleString('vi')} VND</div>
-                    </div>
-                  </div>
-                  ))
-              }</>)
-              :
-              (<>
-                 {
-                  Array(9).fill("").map((item,index)=>
-                  (
-                    <div className="product-item" key={index}>
-                    <Skeleton className="section-2__image"/>
-                     
-                  
-              
-                    <div className="section-2__content">
-                      <Skeleton className="section-2__ptitl"/>
-                      <div className="section-2__desc">
-                        <div className="section-2__descleft">
-                          <Skeleton className="section-2__gender"></Skeleton>
-                          <Skeleton className="section-2__namegender"></Skeleton>
-                        </div>
-                        <Skeleton width={"200px"} height={"10px"} style={{ margin: '0px' }} className="section-2__dos"></Skeleton>
-                        <div className="section-2__desc-right">
-                          <Skeleton className="section-2__age"/>
-                          <Skeleton className="section-2__nage"/>
+                        <div className="section-2__content">
+                          <h3 className="section-2__ptitl">{item.title}</h3>
+                          <div className="section-2__desc">
+                            <div className="section-2__descleft">
+                              <div className="section-2__gender">Giống:</div>
+                              <div className="section-2__namegender">
+                                {item.rating}
+                              </div>
+                            </div>
+                            <div className="section-2__dos"></div>
+                            <div className="section-2__desc-right">
+                              <div className="section-2__age">Tuổi</div>
+                              <div className="section-2__nage">
+                                {item.stock < 10 ? `0${item.age}` : item.age}{" "}
+                                Tháng{" "}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="section-2__price">
+                            {item.price.toLocaleString("vi")} VND
+                          </div>
                         </div>
                       </div>
-                      <Skeleton className="section-2__price"/>
-                    </div>
-                  </div>
-                  )
-                )
-                 }
-              </>)} */}
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    {Array(9)
+                      .fill("")
+                      .map((item, index) => (
+                        <div className="product-item" key={index}>
+                          <Skeleton className="section-2__image" />
 
-                    {productsList?(<>{
-                  productsList.map((item:any)=>( <div className="product-item" key={item.id}>
-                    <div className="section-2__image">
-                     
-                      <Link href={`/pets/${item.id}`}>
-                        <img src={item.img} alt="" />
-                      </Link>
-                    </div>
-                    <div className="section-2__content">
-                      <h3 className="section-2__ptitl">{item.name}</h3>
-                      <div className="section-2__desc">
-                        <div className="section-2__descleft">
-                          <div className="section-2__gender">Giống:</div>
-                          <div className="section-2__namegender">{item.gender}</div>
+                          <div className="section-2__content">
+                            <Skeleton className="section-2__ptitl" />
+                            <div className="section-2__desc">
+                              <div className="section-2__descleft">
+                                <Skeleton className="section-2__gender"></Skeleton>
+                                <Skeleton className="section-2__namegender"></Skeleton>
+                              </div>
+                              <Skeleton
+                                width={"200px"}
+                                height={"10px"}
+                                style={{ margin: "0px" }}
+                                className="section-2__dos"
+                              ></Skeleton>
+                              <div className="section-2__desc-right">
+                                <Skeleton className="section-2__age" />
+                                <Skeleton className="section-2__nage" />
+                              </div>
+                            </div>
+                            <Skeleton className="section-2__price" />
+                          </div>
                         </div>
-                        <div className="section-2__dos"></div>
-                        <div className="section-2__desc-right">
-                          <div className="section-2__age">Tuổi</div>
-                          <div className="section-2__nage">{item.age<10?`0${item.age}`:item.age} Tháng </div>
-                        </div>
-                      </div>
-                      <div className="section-2__price">{item.price.toLocaleString('vi')} VND</div>
-                    </div>
-                  </div>
-                  ))
-              }</>)
-              :
-              (<>
-                 {
-                  Array(8).fill("").map((item,index)=>
-                  (
-                    <div className="product-item" key={index}>
-                    <Skeleton className="section-2__image"/>
-                     
-                  
-              
-                    <div className="section-2__content">
-                      <Skeleton className="section-2__ptitl"/>
-                      <div className="section-2__desc">
-                        <div className="section-2__descleft">
-                          <Skeleton className="section-2__gender"></Skeleton>
-                          <Skeleton className="section-2__namegender"></Skeleton>
-                        </div>
-                        <Skeleton width={"200px"} height={"10px"} style={{ margin: '0px' }} className="section-2__dos"></Skeleton>
-                        <div className="section-2__desc-right">
-                          <Skeleton className="section-2__age"/>
-                          <Skeleton className="section-2__nage"/>
-                        </div>
-                      </div>
-                      <Skeleton className="section-2__price"/>
-                    </div>
-                  </div>
-                  )
-                )
-                 }
-              </>)}
+                      ))}
+                  </>
+                )}
               </div>
 
-              {/* <div className="sp-section-1__Pagination">
-                <button className="button--item" onClick={()=>handlePageChange(currentPage>1?currentPage-1:currentPage)}>
-                <FaArrowLeft />
+              <div className="sp-section-1__Pagination">
+                <button
+                  className="button--item"
+                  onClick={() =>
+                    handlePageChange(
+                      currentPage > 1 ? currentPage - 1 : currentPage
+                    )
+                  }
+                >
+                  <FaArrowLeft />
                 </button>
-       
-                {pagination?(<>
-                {
-                    Array(parseInt(pagination)).fill("").map((item,index)=>
-                        <button key={index+1} className={`${currentPage==index+1?"button--Act":""}`} >{index+1}</button> )
-                }</>):(<>Loading....</>)}
-                <button className="button--item" onClick={()=>handlePageChange(currentPage+1)}>
-                <FaArrowRight />
+                <button
+                  className={`${
+                  (  currentPage > pagination - 1 || currentPage==1)
+                      ? "button--hiddendos"
+                      : "button--dos"
+                  }`}
+                  onClick={() => handlePageChange(currentPage-1)}
+                >
+                  { currentPage - 1}
                 </button>
-              </div> */}
+                {pagination ? (
+                  <>
+                    {Array(parseInt(pagination))
+                      .fill("")
+                      .map((item, index) => (
+                        <button
+                          key={index + 1}
+                          className={`${
+                            currentPage == index + 1 ? "button--Act" : ""
+                          }`}
+                        >
+                          {index + 1}
+                        </button>
+                      ))}
+                  </>
+                ) : (
+                  <>Loading....</>
+                )}
+                <div
+                  className={`${
+                    currentPage >= pagination - 1
+                      ? "button--hiddendos"
+                      : "button--dos"
+                  }`}
+                >
+                  ...
+                </div>
+                <button
+                  className={`${
+                    currentPage > pagination - 1
+                      ? "button--hiddendos"
+                      : "button--dos"
+                  }`}
+                  onClick={() => handlePageChange(pagination)}
+                >
+                  {pagination}
+                </button>
+                <button
+                  className="button--item"
+                  onClick={() => handlePageChange(currentPage + 1)}
+                >
+                  <FaArrowRight />
+                </button>
+              </div>
             </div>
           </div>
         </div>
