@@ -20,6 +20,7 @@ const eslintConfig = [
     rules: {
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-explicit-any': 'off', // Tắt quy tắc
+       "no-unused-vars": "off"
     },
   },
 ];
