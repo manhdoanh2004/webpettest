@@ -81,7 +81,7 @@ export const Section2 = () => {
                             <div className="section-2__desc-right">
                               <div className="section-2__age">Tuổi</div>
                               <div className="section-2__nage">
-                                {item.stock < 10 ? `0${item.age}` : item.age}{" "}
+                                {item.age < 10 ? `0${item.age}` : item.age}{" "}
                                 Tháng{" "}
                               </div>
                             </div>

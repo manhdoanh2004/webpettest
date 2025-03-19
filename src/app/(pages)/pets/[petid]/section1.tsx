@@ -5,6 +5,22 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa6";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+// import required modules
+import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+
+
+
+import product_pet1 from "../../../assets/Img/product_pet-1.jpg"
+import product_pet2 from "../../../assets/Img/product_pet-2.jpg"
+import product_pet3 from "../../../assets/Img/product_pet-3.jpg"
+import product_pet4 from "../../../assets/Img/product_pet-4.jpg"
+import product_pet5 from "../../../assets/Img/product_pet-5.jpg"
+import product_pet6 from "../../../assets/Img/product_pet-6.jpg"
 
 import Link from "next/link";
 
@@ -12,22 +28,26 @@ import { Customer } from './customer';
 import { useEffect, useState } from "react";
 
 
+interface Section1Props {
+  petid: string;
+}
+export const  Section1= ({ petid }: Section1Props) => {
 
-export const  Section1= () => {
-   
+  const [thumbsSwiper, setThumbsSwiper] = useState<any|undefined>(undefined);
+
   const [productdetail,setproductdetail]=useState<any|undefined>(undefined);
    
     useEffect(()=>
     {
         async function fetchDataPro() {
-            // const {petid}= await params;
-            // console.log(petid)
-            const res=await fetch(`https://67cd6ddbdd7651e464ee5912.mockapi.io/petlist/product/1`)
+          
+            const res=await fetch(`https://67cd6ddbdd7651e464ee5912.mockapi.io/petlist/product/${petid}`)
             const data=await res.json();
             setproductdetail(data);
         }
         fetchDataPro();
     },[])
+    console.log(productdetail);
 
   return (
     <>
@@ -35,20 +55,68 @@ export const  Section1= () => {
         <div className="container">
           <div className="product-infor__wrap">
             <div className="product-infor__left">
-              <div className="product-infor__image-main">
-                {productdetail?(<>
-                    <img src={productdetail.img} alt="" />
-                </>):(<>Loading...</>)}
-              </div>
-              
-              <div className="product-infor__image-thumb">
-                {/* <img src="assets/Img/product_pet-6.jpg" alt="" />
-                <img src="assets/Img/product_pet-2.jpg" alt="" />
-                <img src="assets/Img/product_pet-3.jpg" alt="" />
-                <img src="assets/Img/product_pet-4.jpg" alt="" />
-                <img src="assets/Img/product_pet-5.jpg" alt="" />
-             */}
-              </div>
+            <Swiper
+        spaceBetween={10}
+        navigation={true}
+        thumbs={{ swiper: thumbsSwiper }}
+        modules={[FreeMode, Navigation, Thumbs]}
+        className="product-infor__image-main"
+      >
+        <SwiperSlide>
+          {productdetail?(<>
+            <img src={productdetail.img}/>
+          </>):(<>Loading..</>)}
+       
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={product_pet1.src}/>
+        </SwiperSlide>
+        <SwiperSlide>
+        <img src={product_pet2.src}/>
+        </SwiperSlide>
+        <SwiperSlide>
+        <img src={product_pet3.src}/>
+        </SwiperSlide>
+        <SwiperSlide>
+        <img src={product_pet4.src}/>
+        </SwiperSlide>
+        <SwiperSlide>
+        <img src={product_pet5.src}/>
+        </SwiperSlide>
+  
+      </Swiper>
+      <Swiper
+        onSwiper={setThumbsSwiper}
+        spaceBetween={10}
+        slidesPerView={4}
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[FreeMode, Navigation, Thumbs]}
+        className="product-infor__image-thumb"
+      >
+          <SwiperSlide>
+          {productdetail?(<>
+            <img src={productdetail.img}/>
+          </>):(<>Loading..</>)}
+       
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={product_pet1.src}/>
+        </SwiperSlide>
+        <SwiperSlide>
+        <img src={product_pet2.src}/>
+        </SwiperSlide>
+        <SwiperSlide>
+        <img src={product_pet3.src}/>
+        </SwiperSlide>
+        <SwiperSlide>
+        <img src={product_pet4.src}/>
+        </SwiperSlide>
+        <SwiperSlide>
+        <img src={product_pet5.src}/>
+        </SwiperSlide>
+      </Swiper>
+             
             </div>
             <div className="product-infor__right">
               <nav className="box-breadcrumb">
@@ -71,15 +139,15 @@ export const  Section1= () => {
                     <li className="box-breadcrumb__item">
                       {" "}
                       <Link className="box-breadcrumb__link" href="#">
-                        Shiba Inu Màu Nâu Đỏ
+                      {productdetail?productdetail.name :"loading.."}
                       </Link>
            
                     </li>
                   </ul>
                 </div>
               </nav>
-              <h1 className="product-infor__title">Shiba Inu Màu Nâu Đỏ</h1>
-              <div className="product-infor__price">12.000.000 VND</div>
+              <h1 className="product-infor__title">{productdetail?productdetail.name :"loading.."}</h1>
+              <div className="product-infor__price">{productdetail?productdetail.price? `${productdetail.price.toLocaleString("vi")} VND` :"loading.." : "loading.."}</div>
               <div className="product-infor__buttons">
                 {" "}
                 <Link href="/contact">
