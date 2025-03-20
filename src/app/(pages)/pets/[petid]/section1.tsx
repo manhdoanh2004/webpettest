@@ -47,7 +47,7 @@ export const  Section1= ({ petid }: Section1Props) => {
         }
         fetchDataPro();
     },[])
-    console.log(productdetail);
+  
 
   return (
     <>

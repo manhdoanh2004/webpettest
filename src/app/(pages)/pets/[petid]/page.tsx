@@ -15,15 +15,21 @@ export const metadata: Metadata = {
     
   };
 
-  interface PageProps {
-    params: {
-      petid: string;
-    };
-  }
+  // interface PageProps {
+  //   params: {
+  //     petid: string;
+  //   };
+  // }
 
-export default  function Petdetail( { params }: PageProps)
+export default  async function Petdetail( {
+  params,
+}: {
+  params: Promise<{ petid: string }>
+})
 {
-  const{petid}=params;
+  
+  const{petid}= await params;
+  console.log(petid)
 
     return(
         <>
