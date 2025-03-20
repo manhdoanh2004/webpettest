@@ -14,7 +14,14 @@ export const metadata: Metadata = {
 
     
   };
-export default async function Petdetail( { params }: { params: { petid: string } })
+
+  interface PageProps {
+    params: {
+      petid: string;
+    };
+  }
+
+export default  function Petdetail( { params }: PageProps)
 {
   const{petid}=params;
 
