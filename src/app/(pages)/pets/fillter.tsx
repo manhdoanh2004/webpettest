@@ -1,11 +1,12 @@
 'use client'
+import Image from "next/image"
 import fillter from "../../assets/Img/Filter.svg"
 export const Fillter=()=>
 {
     return (
         <>
             <div className="sp-section-1__option">
-            <div className="sp-section-1__option-iteam"><img src={fillter.src} alt="filler"/>
+            <div className="sp-section-1__option-iteam"><Image src={fillter.src} width={30} height={30} alt="filler"/>
               <p>Bộ lọc  </p>
             </div>
             <div className="sp-section-1__op1">

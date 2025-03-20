@@ -57,7 +57,7 @@ export const Customer=()=>
                {customerimg?(<>{
                         customerimg.map((item:any)=>  
                        
-                        <SwiperSlide>  <img key={crypto.randomUUID()} className='myswiper' src={item.img} alt="ảnh customer" /></SwiperSlide>
+                        <SwiperSlide key={crypto.randomUUID()} >  <img key={crypto.randomUUID()} className='myswiper' src={item.img} alt="ảnh customer" /></SwiperSlide>
                     )
                 }</>):(<>Loading...</>)}
               

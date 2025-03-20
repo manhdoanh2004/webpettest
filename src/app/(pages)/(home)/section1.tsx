@@ -21,8 +21,8 @@ export const Section1 = () => {
       <div className="section-1">
         <div className="container">
           <div className="section-1__wrap">
-            <img className="section-1__bg8" src={section1Bg8.src} alt="" />
-            <img className="section-1__bg1" src={section1Bg1.src} alt="" />
+            <img className="section-1__bg8" src={section1Bg8.src} alt="bg8" />
+            <img className="section-1__bg1" src={section1Bg1.src} alt="bg1" />
             <div className="section-1__content">
               <h1 className="section-1__title">Thêm Một Bạn</h1>
               <h2 className="section-1__subtitle">Thêm Ngàn Niềm Vui!</h2>
@@ -57,10 +57,7 @@ export const Section1 = () => {
                 alt=""
               />
             
-              <img
-                className="section-1__image-main2"
-                src={section2Main.src}
-              />
+              
               <img
                 className="section-1__bg4"
                 src={section1Bg4.src}

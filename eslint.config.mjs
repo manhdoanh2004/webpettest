@@ -1,4 +1,6 @@
 import { dirname } from "path";
+
+
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
 import eslintPluginTypescript from '@typescript-eslint/eslint-plugin';
@@ -27,7 +29,8 @@ const eslintConfig = [
     rules: {
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-explicit-any': 'off', // Tắt quy tắc
-       "no-unused-vars": "off"
+      
+
     },
   },
 ];

@@ -7,6 +7,7 @@ import Skeleton from "react-loading-skeleton";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
+import Image from "next/image";
 
 export const Section2 = () => {
   const router = useRouter();
@@ -54,7 +55,7 @@ export const Section2 = () => {
               <div className="sp-section-1__nhan">
                 <div className="sp-section-1__title-main"> Chó nhỏ</div>
                 <div className="sp-section-1__option-iteam2">
-                  <img src={fillter.src} alt="fillter" />
+                <Image src={fillter.src} width={30} height={30} alt="filler"/>
                   <p>Bộ lọc </p>
                 </div>
               </div>
