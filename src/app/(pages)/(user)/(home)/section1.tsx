@@ -3,16 +3,16 @@ import { FaRegCirclePlay } from "react-icons/fa6";
 
 import Link from "next/link";
 import Image from "next/image";
-import section1Bg1 from "../../assets/Img/section-1_bg1.svg";
-import section1Bg2 from "../../assets/Img/section-1_bg2.svg";
-import section1Bg3 from "../../assets/Img/section1_bg3.svg";
-import section1Bg4 from "../../assets/Img/section-1_bg4.svg";
-import section1Bg5 from "../../assets/Img/section-1_bg5.svg";
-import section1Bg6 from "../../assets/Img/section-1_bg6.svg";
-import section1Bg8 from "../../assets/Img/section-1_bg8.svg";
-import section1Bg7 from "../../assets/Img/section-1_bg7.svg";
-import section1Main from "../../assets/Img/section1_Image-1.png";
-import section2Main from "../../assets/Img/section-1_Image_main2.png";
+import section1Bg1 from "../../../assets/Img/section-1_bg1.svg";
+import section1Bg2 from "../../../assets/Img/section-1_bg2.svg";
+import section1Bg3 from "../../../assets/Img/section1_bg3.svg";
+import section1Bg4 from "../../../assets/Img/section-1_bg4.svg";
+import section1Bg5 from "../../../assets/Img/section-1_bg5.svg";
+import section1Bg6 from "../../../assets/Img/section-1_bg6.svg";
+import section1Bg8 from "../../../assets/Img/section-1_bg8.svg";
+import section1Bg7 from "../../../assets/Img/section-1_bg7.svg";
+import section1Main from "../../../assets/Img/section1_Image-1.png";
+
 
 
 export const Section1 = () => {

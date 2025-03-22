@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image"
-import fillter from "../../assets/Img/Filter.svg"
+import fillter from "../../../assets/Img/Filter.svg"
 export const Fillter=()=>
 {
     return (

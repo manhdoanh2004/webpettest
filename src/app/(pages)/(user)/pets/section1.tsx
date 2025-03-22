@@ -1,5 +1,5 @@
 'use client '
-import { Section3 } from "../(home)/section3"
+import { Section3 } from "../../(user)/(home)/section3"
 
 export const Section1=()=>
 {

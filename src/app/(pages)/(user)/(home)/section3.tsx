@@ -1,10 +1,10 @@
 'use client'
 import Link from "next/link";
-import section3bg1 from "../../assets/Img/section-3_bg1.svg";
-import section3bg2 from "../../assets/Img/section-3_bg2.svg";
-import section3bg3 from "../../assets/Img/section-3_bg3.svg";
-import section3bg4 from "../../assets/Img/section-3_bg4.svg";
-import sectionmain from "../../assets/Img/section-3_Image_main.png";
+import section3bg1 from "../../../assets/Img/section-3_bg1.svg";
+import section3bg2 from "../../../assets/Img/section-3_bg2.svg";
+import section3bg3 from "../../../assets/Img/section-3_bg3.svg";
+import section3bg4 from "../../../assets/Img/section-3_bg4.svg";
+import sectionmain from "../../..//assets/Img/section-3_Image_main.png";
 import { FaRegCirclePlay } from "react-icons/fa6";
 export const Section3=()=>
 {

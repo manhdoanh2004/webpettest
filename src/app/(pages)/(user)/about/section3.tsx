@@ -1,5 +1,5 @@
 'use client'
-import aboutsection3member from "../../assets/Img/about-section3__member.png"
+import aboutsection3member from "../../../assets/Img/about-section3__member.png"
 export const Section3=()=>
 {
     return (

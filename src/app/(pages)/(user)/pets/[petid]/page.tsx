@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import path from "../../../../../public/Frame.svg"
-import { Section1 } from "../../pets/[petid]/section1";
-import { Section2 } from ".././[petid]/section2";
+import path from "../../../../../../public/Frame.svg"
+import { Section1 } from "./section1";
+import { Section2 } from "./section2";
+import UserLayout from "@/app/components/layouts/userLayout";
 export const metadata: Metadata = {
     title: " Thông tin thú cưng ",
     description: "",
@@ -15,11 +16,7 @@ export const metadata: Metadata = {
     
   };
 
-  // interface PageProps {
-  //   params: {
-  //     petid: string;
-  //   };
-  // }
+
 
 export default  async function Petdetail( {
   params,
@@ -33,8 +30,11 @@ export default  async function Petdetail( {
 
     return(
         <>
+        <UserLayout>
+
      <Section1 petid={petid}/>
      <Section2/>
+        </UserLayout>
         </>
     )
 }

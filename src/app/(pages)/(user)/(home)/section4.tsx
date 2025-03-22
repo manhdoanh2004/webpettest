@@ -1,7 +1,7 @@
 'use client'
 import { FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
-import section4Image1 from "../../assets/Img/section-4_Image1.png";
+
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 export const Section4 = () => {

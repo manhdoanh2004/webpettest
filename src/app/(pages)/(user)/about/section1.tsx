@@ -1,10 +1,10 @@
 "use client";
-import aboutsection1Main from "../../assets/Img/about-section1__main.svg";
-import aboutsection1Bg4 from "../../assets/Img/about-section1__bg4.svg";
-import aboutsection1Bg1 from "../../assets/Img/about-section1__bg1.svg";
-import aboutsection1Bg2 from "../../assets/Img/about-section1__bg2.svg";
-import aboutsection1Bg3 from "../../assets/Img/about-section1__bg3.svg";
-import icon from "../../../../public/Frame.svg";
+import aboutsection1Main from "../../../assets/Img/about-section1__main.svg";
+import aboutsection1Bg4 from "../../../assets/Img/about-section1__bg4.svg";
+import aboutsection1Bg1 from "../../../assets/Img/about-section1__bg1.svg";
+import aboutsection1Bg2 from "../../../assets/Img/about-section1__bg2.svg";
+import aboutsection1Bg3 from "../../../assets/Img/about-section1__bg3.svg";
+import icon from "../../../../../public/Frame.svg";
 import Link from "next/link";
 export const Section1 = () => {
   return (

@@ -1,10 +1,10 @@
 'use client'
-import contactImg1 from "../../assets/Img/contact-section1_img1.png"
-import contactImg2 from "../../assets/Img/contact-section1_img2.png"
-import contactImg3 from "../../assets/Img/contact-section1_img3.png"
-import contactImg4 from "../../assets/Img/contact-section1_img4.svg"
-import section3bg3 from "../../assets/Img/section-3_bg3.svg";
-import sectionmain from "../../assets/Img/section-3_Image_main.png";
+import contactImg1 from "../../../assets/Img/contact-section1_img1.png"
+import contactImg2 from "../../../assets/Img/contact-section1_img2.png"
+import contactImg3 from "../../../assets/Img/contact-section1_img3.png"
+import contactImg4 from "../../../assets/Img/contact-section1_img4.svg"
+import section3bg3 from "../../../assets/Img/section-3_bg3.svg";
+import sectionmain from "../../../assets/Img/section-3_Image_main.png";
 import { FaRegCirclePlay } from "react-icons/fa6";
 export const Section1=()=>
 {

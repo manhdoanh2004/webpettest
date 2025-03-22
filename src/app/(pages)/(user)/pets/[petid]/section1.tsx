@@ -15,12 +15,12 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 
 
-import product_pet1 from "../../../assets/Img/product_pet-1.jpg"
-import product_pet2 from "../../../assets/Img/product_pet-2.jpg"
-import product_pet3 from "../../../assets/Img/product_pet-3.jpg"
-import product_pet4 from "../../../assets/Img/product_pet-4.jpg"
-import product_pet5 from "../../../assets/Img/product_pet-5.jpg"
-import product_pet6 from "../../../assets/Img/product_pet-6.jpg"
+import product_pet1 from "../../../../assets/Img/product_pet-1.jpg"
+import product_pet2 from "../../../../assets/Img/product_pet-2.jpg"
+import product_pet3 from "../../../../assets/Img/product_pet-3.jpg"
+import product_pet4 from "../../../../assets/Img/product_pet-4.jpg"
+import product_pet5 from "../../../../assets/Img/product_pet-5.jpg"
+import product_pet6 from "../../../../assets/Img/product_pet-6.jpg"
 
 import Link from "next/link";
 

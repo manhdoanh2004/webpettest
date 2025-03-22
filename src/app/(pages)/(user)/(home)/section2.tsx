@@ -21,6 +21,11 @@ export const Section2 = () => {
       fectchData();
   },[])
 
+  let productLimit=[];
+  if(productsList) 
+  {
+   productLimit=productsList.slice(0,8);
+  }
   return (
     <>
       <section className="section-2">
@@ -42,7 +47,7 @@ export const Section2 = () => {
           <div className="section-2__wrap">
            
               {productsList?(<>{
-                  productsList.map((item:any)=>( <div className="product-item" key={item.id}>
+                  productLimit.map((item:any)=>( <div className="product-item" key={item.id}>
                     <div className="section-2__image">
                      
                       <Link href={`/pets/${item.id}`}>

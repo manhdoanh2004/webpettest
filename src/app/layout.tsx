@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import {Header} from "./components/header/header"
-import { Footer } from "./components/footer/footer";
 import path from "../../public/Frame.svg"
 export const metadata: Metadata = {
   title: "Monito Pets",
@@ -14,7 +12,6 @@ export const metadata: Metadata = {
   }
   
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,11 +23,10 @@ export default function RootLayout({
     <body className="">
   
 
-        <Header/>
+   
 
         {children}
 
-        <Footer/>
 
       </body>
     </html>

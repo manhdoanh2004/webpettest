@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Fillter } from "./fillter";
-import fillter from "../../assets/Img/Filter.svg";
+import fillter from "../../../assets/Img/Filter.svg";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
