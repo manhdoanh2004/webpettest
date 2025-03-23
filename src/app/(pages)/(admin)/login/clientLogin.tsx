@@ -1,16 +1,38 @@
 'use client'
+
 export const ClientLogin=()=>
 {
+ 
 
-    const handleSubmit=(event:any)=>
+    
+
+    const handleSubmit=async (event:any)=>
     {
         event.preventDefault();
         const email=event.target.email;
         const password=event.target.password;
 
-        if(email.value=="admin@gmail.com"&& password.value=="admin1234")
-        {
-           sessionStorage.setItem("suces","true");
+     
+
+        try {
+          const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+          });
+    
+          if (response.ok) {
+ 
+           // setSuccessMessage('Đăng nhập thành công! Đang chuyển hướng...'); // Hiển thị thông báo thành công
+          
+          } else {
+            const errorData = await response.json();
+          }
+        } catch (e) {
+         
+          console.error("Lỗi đăng nhập:", e);
         }
 
     }

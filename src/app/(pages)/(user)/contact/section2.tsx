@@ -8,8 +8,14 @@ import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
+import { useEffect } from "react";
 import Swal from 'sweetalert2'
+import { stringify } from "querystring";
+import { json } from "stream/consumers";
 export const Section2 = () => {
+
+
+  
 
     interface formData
     {
@@ -19,6 +25,21 @@ export const Section2 = () => {
         address:string,
         content:string
     }
+
+   
+        async function fetchdata(formdata:formData) {
+  
+          const res= await fetch((""),{
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formdata),
+          });
+          const data=await res.json(); 
+        }
+      
+      
 
     const handleSubmit=(event:any)=>
     {
@@ -133,6 +154,8 @@ export const Section2 = () => {
                                 content:Message
                               }
                               console.log(data);
+                              fetchdata(data)
+                              
                                 name.value=email.value=phonenumber.value=message.value=address.value="";
                                 Swal.fire({
                                   position: "center",
