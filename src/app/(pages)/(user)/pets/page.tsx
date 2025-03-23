@@ -1,20 +1,9 @@
-
-import type { Metadata } from "next";
+'use client'
+import Head from 'next/head';
 
 import { Section1 } from "./section1";
 import { Section2 } from "./section2";
 import UserLayout from "@/app/components/layouts/userLayout";
-
-
-
-export const metadata: Metadata = {
-    title: " Danh sách  thú cưng ",
-    description: "",
-
-
-  };
-
-
 
 
 export default  function Petlist()
@@ -22,8 +11,11 @@ export default  function Petlist()
   
 return(
   <>
-<UserLayout>
 
+<Head>
+        <title>Danh sách sản phẩm</title>
+      </Head>
+<UserLayout>
  <Section1/>
  <Section2/>
 </UserLayout>

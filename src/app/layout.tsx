@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import path from "../../public/Frame.svg"
 export const metadata: Metadata = {
-  title: "Monito Pets",
+  title: "Danh sách sản phẩm",
   description: "",
   icons:{
     icon:

@@ -23,7 +23,7 @@ export const ClientLogin=()=>
         <form className="inner-form" id="login-form" onSubmit={(event)=>handleSubmit(event)}>
           <div className="inner-group">
             <label className="inner-label" htmlFor="email">Email</label>
-            <input className="inner-control" type="email" name="email" id="email" placeholder="Ví dụ: levana@gmail.com"/>
+            <input className="inner-control" type="email" name="email" id="email" placeholder=""/>
           </div>
           <div className="inner-group">
             <label className="inner-label" htmlFor="password">Mật khẩu</label>
