@@ -1,22 +1,15 @@
+// _middleware.js (hoặc _middleware.ts)
+import { NextRequest, NextResponse } from 'next/server';
 
-import { NextResponse } from 'next/server';
+export async function middleware(req:NextRequest) {
+  const path = req.nextUrl.pathname;
+  const isLoggedIn = req.cookies.get('loggedIn')?.value === 'true';
 
-export function middleware(request:any) {
-  const path = request.nextUrl.pathname;
-
-  const isLoginPage = path === '/login';
-  const isAdminPage = path === '/admin';
-
-  const authTokenCookie = request.cookies.get('authToken');
-  const isAuthenticated = authTokenCookie ? true : false;
-
-  // Chuyển hướng từ /login sang /admin **nếu đã đăng nhập và đang ở trang login**
-  if (isLoginPage && isAuthenticated) {
-    return NextResponse.redirect(new URL('/admin', request.url));
-  }
-
-  if (isAdminPage && !isAuthenticated) {
-    return NextResponse.redirect(new URL('/login', request.url));
+  if (path.startsWith('/admin')) {
+    if (!isLoggedIn) {
+      return NextResponse.redirect(new URL('/login', req.url));
+    }
+    return NextResponse.next();
   }
 
   return NextResponse.next();

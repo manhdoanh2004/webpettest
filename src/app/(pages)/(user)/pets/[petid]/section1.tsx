@@ -58,6 +58,7 @@ export const  Section1= ({ petid }: Section1Props) => {
             <Swiper
         spaceBetween={10}
         navigation={true}
+   
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
         className="product-infor__image-main"

@@ -1,9 +1,11 @@
 'use client'
 
+import { useRouter } from "next/navigation";
+
 export const ClientLogin=()=>
 {
  
-
+  const router = useRouter();
     
 
     const handleSubmit=async (event:any)=>
@@ -26,7 +28,7 @@ export const ClientLogin=()=>
           if (response.ok) {
  
            // setSuccessMessage('Đăng nhập thành công! Đang chuyển hướng...'); // Hiển thị thông báo thành công
-          
+           router.push('/admin');
           } else {
             const errorData = await response.json();
           }

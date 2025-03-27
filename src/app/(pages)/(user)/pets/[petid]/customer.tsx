@@ -47,6 +47,24 @@ export const Customer=()=>
           delay: 2500,
           disableOnInteraction: false,
         }}
+        breakpoints={{
+          300: { // Tablet trở lên
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          575: { // Tablet trở lên
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          767: { // Tablet trở lên
+            slidesPerView: 3,
+            spaceBetween: 10,
+          },
+          992: { // Desktop trở lên
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
+        }}
         pagination={{
           clickable: true,
         }}
