@@ -11,9 +11,17 @@ $--color-text-light:#667479;
 
 [data-menumoblie=show]
 {
-   transform: scaleX(1); /* Ẩn theo chiều ngang */ 
+   transform: scaleX(1) !important; /* Ẩn theo chiều ngang */ 
 }
 [data-menumoblie=hidden]
+{
+   transform: scaleX(0) !important; /* Ẩn theo chiều ngang */
+}
+[data-listcart=show]
+{
+   transform: scaleX(1) !important; /* Ẩn theo chiều ngang */ 
+}
+[data-listcart=hidden]
 {
    transform: scaleX(0) !important; /* Ẩn theo chiều ngang */
 }
@@ -22,10 +30,6 @@ body,h1,h2,h3,p
 {
     margin: 0px;
     
-}
-body
-{
-   // position: relative;
 }
 
 a
@@ -248,7 +252,7 @@ a
    width: 100%;
    height: 100%;
    z-index: 200;
-   transform: scaleX(1);
+   transform: scaleX(0);
    transform-origin: right;
    display: flex;
    justify-content: end;
@@ -261,18 +265,69 @@ a
       text-align: left;
       color: black;
    }
+   &__listitem
+   {
+      flex: 1;
+      width: 100%;
+      margin-left: 20px;
+   }
    &__item
    {
-      
+      width: 100%;
+      height: 80px;
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      img   
+      {
+         width: 80px;
+         height: 100%;
+         object-fit: cover;
+         overflow: hidden;
+         aspect-ratio: 1/1;
+         border-radius: 15px;
+       
+      }
+   }
+   &__itemdesc
+   {
+      text-align: left;
+   }
+   &__itemtitle
+   {
+      color: #00175D;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 5px;
+   }
+   &__itemprice
+   {
+      color: #00175D;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 5px;
+      span{
+         font-weight: 500;
+      }
+   }
+   &__itemdelete
+   {
+      background-color: transparent;
+      color: red;
+      outline: none;
+      border: 0px;
+      cursor: pointer;
    }
    &__content
    {
       background-color: white;
       height: 100%;
-      width: calc(100% - 50%);
-      position: relative;
+      width: calc(100% - 64%);
+     
       z-index: 10;
-      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      display: flex;
+      flex-direction: column;
    }
 
    &__buttons
@@ -282,11 +337,19 @@ a
       justify-content: center;
       align-items: center;
       margin-top: 40px;
-      padding-top: 20px;
+      padding: 20px 0px;
       border-top:solid 1px gray  ;
+     
       .button
       {
          border-radius: 10px;
+         transition: all 0.6s;
+         
+         &:hover
+         {
+            @extend .button--outline;
+            transition: all 0.6s;
+         }
       }
    }
 
@@ -401,7 +464,7 @@ a
       font-size: 25px;
       font-weight: 700;
       color: #002A48;
-      transform: 0.6s;
+      
       cursor: pointer;
       &:hover
       {

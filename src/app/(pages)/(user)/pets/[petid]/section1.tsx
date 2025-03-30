@@ -26,17 +26,18 @@ import Link from "next/link";
 
 import { Customer } from './customer';
 import { useEffect, useState } from "react";
-
-
 interface Section1Props {
   petid: string;
 }
 export const  Section1= ({ petid }: Section1Props) => {
 
+console.log("id"+ petid);
+
   const [thumbsSwiper, setThumbsSwiper] = useState<any|undefined>(undefined);
 
   const [productdetail,setproductdetail]=useState<any|undefined>(undefined);
-   
+  const [qualitiItem,setQualitiItem]=useState('0');
+ 
     useEffect(()=>
     {
         async function fetchDataPro() {
@@ -44,10 +45,90 @@ export const  Section1= ({ petid }: Section1Props) => {
             const res=await fetch(`https://67cd6ddbdd7651e464ee5912.mockapi.io/petlist/product/${petid}`)
             const data=await res.json();
             setproductdetail(data);
+       
         }
         fetchDataPro();
+      
     },[])
   
+
+ 
+  useEffect(()=>
+    {
+     
+      const buttonAddItem=document.querySelector("[data-buttonadditem]") as HTMLElement;
+   
+        if(buttonAddItem)
+        {
+      
+          buttonAddItem.addEventListener("click", ()=>
+          {
+            const productInfofTitle=document.querySelector(".product-infor__title");
+            const productInforPrice=document.querySelector(".product-infor__price");
+           
+         
+            if(productInfofTitle&&productInforPrice)
+            {
+              const title=productInfofTitle.innerHTML;
+              const price=productInforPrice.innerHTML;
+
+              const listItem=document.querySelectorAll(".box-cart__item");
+          
+           
+              const boxcartlistitem=document.querySelector(".box-cart__listitem");
+            
+              if(boxcartlistitem)
+              {
+
+                //tạo thẻ item
+                const newItem=document.createElement("div");
+                  newItem.classList.add("box-cart__item"); //thêm class để css cho thẻ item
+                  newItem.setAttribute("key",petid);// thêm thuộc tính key và gắn giá trị cho thuộc tính key
+                  //tạo thẻ img của item
+                  const itemImg=document.createElement("img");
+                  itemImg.classList.add("box-cart__itemimg");//thêm class để css cho thẻ img 
+
+                  //tạo thẻ thông tin của item
+                  const itemDesc=document.createElement("div");
+                  itemDesc.classList.add("box-cart__itemdesc");//thêm class để css cho thẻ thông tin item 
+
+                  //tạo thẻ chứa title của item
+                  const itemtitle=document.createElement("a");
+                  itemtitle.classList.add("box-cart__itemtitle");//thêm class dể css cho thẻ chứa title 
+                  itemtitle.innerHTML=title;
+
+                  //tạo thẻ chứa giá  của item 
+                  const itemPrice=document.createElement("div");
+                  itemPrice.classList.add("box-cart__itemdelete");//thêm class dể css cho thẻ chứa giá của item 
+                  itemPrice.innerHTML=price
+
+                   //tạo thẻ chứa nút xóa của item 
+                  const itemDelete=document.createElement("div");
+                  itemDelete.classList.add("box-cart__itemdelete");//thêm class dể css cho thẻ chứa nút xóa 
+                  itemDelete.innerHTML="Xóa";
+
+                  //
+                  itemDesc.appendChild(itemtitle);
+                  itemDesc.appendChild(itemPrice);
+                  itemDesc.appendChild(itemDelete);
+
+                  //
+                  newItem.appendChild(itemImg);
+                  newItem.appendChild(itemDesc);
+                  boxcartlistitem.appendChild(newItem);
+
+
+                  setQualitiItem(listItem.length.toString());
+
+
+
+
+              }
+            }
+         
+          })
+        }
+    },[])
 
   return (
     <>
@@ -155,7 +236,7 @@ export const  Section1= ({ petid }: Section1Props) => {
                   <div className="button">Liên hệ</div>
                 </Link>
                 <a href="#">
-                  <div className="button button--outline">
+                  <div className="button button--outline" data-buttonadditem >
                   <FaCartPlus/> Thêm vào giỏ hàng 
                   </div>
                 </a>

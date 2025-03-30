@@ -1,5 +1,5 @@
 "use client"
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link"
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
@@ -9,10 +9,12 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdContactMail } from "react-icons/md";
 import { MdOutlineCoPresent } from "react-icons/md";
 import contactImg4 from "../../assets/Img/contact-section1_img4.svg"
+import imgpet from "../../assets/Img/product_pet-1.jpg"
 import { useEffect, useState } from "react";
 export const Header=()=>
 {
 
+  const [qualitiItem,setQualitiItem]=useState('0');
 
  const currentPath=usePathname();
     const navLink=[
@@ -91,33 +93,41 @@ export const Header=()=>
   useEffect(()=>
     {
      
-      const buttonCart=document.querySelector("[data-menu]");
+      const buttonCart=document.querySelector(".header__iconCart");
       if(buttonCart) 
       {
-        const menuMoblie=document.querySelector("[data-menumoblie]") as HTMLElement;
+        const listCart=document.querySelector(".box-cart") as HTMLElement;
         buttonCart.addEventListener("click",()=>
         {
          
-          if(menuMoblie) 
+          if(listCart) 
           {
-            menuMoblie.setAttribute("data-menumoblie","show");
+            listCart.setAttribute("data-listcart","show");
            
           }
         })
   
-        const menuOverLay=document.querySelector(".box-menu-moblie__overlay");
-        if(menuOverLay)
+        const cartOverLay=document.querySelector(".box-cart__overLay");
+        if(cartOverLay)
         {
-          menuOverLay.addEventListener("click",()=>
+          cartOverLay.addEventListener("click",()=>
           {
          
-              menuMoblie.setAttribute("data-menumoblie","hidden")
+            listCart.setAttribute("data-listcart","hidden")
           })
         }
       }
     },[])
   
   
+    useEffect(()=>
+    {
+        const listItem=document.querySelectorAll(".box-cart__item");
+        if(listItem)
+        {
+          setQualitiItem(listItem.length.toString());
+        }
+    },[])
 
     return(
         <>
@@ -135,24 +145,41 @@ export const Header=()=>
             <div className="box-menu-moblie__overlay"></div>
           </div>
 
-          <div className="box-cart">
+          <div className="box-cart" data-listcart >
             <div className="box-cart__content">
                   <div className="box-cart__title">Giỏ hàng của bạn</div>
                   <div className="box-cart__listitem">
                     
                     <div className="box-cart__item">
-                      Item1
+                        <img src={imgpet.src} className="box-cart__itemimg" alt="" />
+                        <div className="box-cart__itemdesc">
+                          <Link href={"pets/1"} className="box-cart__itemtitle">Thú cưng 1</Link>
+                          <div className="box-cart__itemprice">9,000,000 <span>VND</span></div>
+                          <button className="box-cart__itemdelete" >Xóa</button>
+                          </div>
+
                     </div>
                     <div className="box-cart__item">
-                      Item1
+                        <img src={imgpet.src} className="box-cart__itemimg" alt="" />
+                        <div className="box-cart__itemdesc">
+                          <div className="box-cart__itemtitle">Thú cưng 1</div>
+                          <div className="box-cart__itemprice">9,000,000 <span>VND</span></div>
+                          <button className="box-cart__itemdelete" >Xóa</button>
+                          </div>
                     </div>
                     <div className="box-cart__item">
-                      Item1
+                        <img src={imgpet.src} className="box-cart__itemimg" alt="" />
+                        <div className="box-cart__itemdesc">
+                          <div className="box-cart__itemtitle">Thú cưng 1</div>
+                          <div className="box-cart__itemprice">9,000,000 <span>VND</span></div>
+                          <button className="box-cart__itemdelete" >Xóa</button>
+                          </div>
                     </div>
+               
                   </div>
                   <div className="box-cart__buttons">
-                    <a href="#" className="button">Xem chi tiết</a>
-                    <a href="#" className="button button--outline">Thanh toán</a>
+
+                    <a href="#" className="button ">Thanh toán</a>
                   </div>
             </div>
             <div className="box-cart__overLay"></div>
@@ -182,7 +209,7 @@ export const Header=()=>
           <div className="header__cart">
                 <div className="header__iconCart">
                 <FaShoppingCart/>
-                <div className="header__qualiti">0</div>
+                <div className="header__qualiti">{qualitiItem}</div>
                 </div>
           </div>
           <div className="header__button-search"><FaMagnifyingGlass /></div>
