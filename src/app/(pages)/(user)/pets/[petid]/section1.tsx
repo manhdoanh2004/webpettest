@@ -20,24 +20,25 @@ import product_pet2 from "../../../../assets/Img/product_pet-2.jpg"
 import product_pet3 from "../../../../assets/Img/product_pet-3.jpg"
 import product_pet4 from "../../../../assets/Img/product_pet-4.jpg"
 import product_pet5 from "../../../../assets/Img/product_pet-5.jpg"
-import product_pet6 from "../../../../assets/Img/product_pet-6.jpg"
 
 import Link from "next/link";
 
 import { Customer } from './customer';
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { useCart } from "@/app/components/cart/CartContext";
+import BoxBreadCrumb from "@/app/components/boxbreadcrumb/BoxBreadCrumb";
 interface Section1Props {
   petid: string;
 }
 export const  Section1= ({ petid }: Section1Props) => {
 
-console.log("id"+ petid);
+  const {  setQualitiItem,  setSumPrice, setListItemCart } = useCart();
 
   const [thumbsSwiper, setThumbsSwiper] = useState<any|undefined>(undefined);
 
   const [productdetail,setproductdetail]=useState<any|undefined>(undefined);
-  const [qualitiItem,setQualitiItem]=useState('0');
- 
+
     useEffect(()=>
     {
         async function fetchDataPro() {
@@ -51,84 +52,131 @@ console.log("id"+ petid);
       
     },[])
   
+    const handleClick=()=>
+      {
+  
+        //lấy ra thông tin sản phẩm
+          const productInfofTitle=document.querySelector(".product-infor__title");
+             const productInforPrice=document.querySelector(".product-infor__price");
+             const productInforImg=document.querySelector(".product-infor__image-main img") as HTMLImageElement;
+  
+             if(productInfofTitle&&productInforPrice&&productInforImg)
+             {
+              let listItem=[];
+              //nếu giỏ hàng của người dùng trước đó đã có 1 mảng chứa những sản phẩm khác rồi thì lấy ra  và thêm sản phẩm mới vào mảng
+                if(sessionStorage.getItem("cartList"))
+                {
+  
+                  const title=productInfofTitle.innerHTML;
+                    const img=productInforImg.src.toString();
+                    const price=productInforPrice.innerHTML
+  
+                    const regex=/\d+/g;
+  
+                    const ArrayPrice=price.match(regex);
+  
+  
+                    const stringPrice=ArrayPrice?.join("")|| "";
+                    const PriceInt=parseInt(stringPrice);
+                  
+  
+                    const cartSession=sessionStorage.getItem("cartList") || "";
+  
+                     listItem=[...JSON.parse(cartSession)];
+  
+                     //tạo 1 sản phẩm
+                    const cartItem={
+                      index:listItem.length+1,
+                      id:petid,
+                      title:title,
+                      img:img,
+                      price:PriceInt
+                    }
+  
+                    //thêm sản phẩm vào mảng sản phẩm
+                  listItem.push(cartItem)
+  
+                  //cập nhậtt và lưu lại vào trong sessionStorage
+                  sessionStorage.setItem("cartList",JSON.stringify(listItem));
+  
+                  // Tính toán lại sumPrice sau khi thêm item
+                  let newSumPrice = listItem.reduce((accumulator, item) => {
+                    return accumulator + item.price;
+                  }, 0);
+  
+                  // Cập nhật state giỏ hàng thông qua Context
+                  setListItemCart(listItem); // Cập nhật listItemCart state
+                  setQualitiItem(listItem.length.toString()); // Cập nhật qualitiItem state
+                  setSumPrice(newSumPrice); // Cập nhật sumPrice state
+  
+  
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Thêm vào giỏ hàng thành công!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+  
+  
+                }
+                else
+                {
+                  //nếu giỏ hàng của người dùng trước đó chưa có  mảng chứa những sản phẩm
+                  const title=productInfofTitle.innerHTML;
+                  const img=productInforImg.src.toString();
+                  const price=productInforPrice.innerHTML
+                    console.log(price);
 
- 
-  useEffect(()=>
-    {
-     
-      const buttonAddItem=document.querySelector("[data-buttonadditem]") as HTMLElement;
-   
-        if(buttonAddItem)
-        {
-      
-          buttonAddItem.addEventListener("click", ()=>
-          {
-            const productInfofTitle=document.querySelector(".product-infor__title");
-            const productInforPrice=document.querySelector(".product-infor__price");
-           
-         
-            if(productInfofTitle&&productInforPrice)
-            {
-              const title=productInfofTitle.innerHTML;
-              const price=productInforPrice.innerHTML;
+                  const regex=/\d+/g; // Regex để lấy số từ chuỗi giá
 
-              const listItem=document.querySelectorAll(".box-cart__item");
-          
-           
-              const boxcartlistitem=document.querySelector(".box-cart__listitem");
-            
-              if(boxcartlistitem)
-              {
+                  const ArrayPrice=price.match(regex); // Tìm các số trong chuỗi giá
 
-                //tạo thẻ item
-                const newItem=document.createElement("div");
-                  newItem.classList.add("box-cart__item"); //thêm class để css cho thẻ item
-                  newItem.setAttribute("key",petid);// thêm thuộc tính key và gắn giá trị cho thuộc tính key
-                  //tạo thẻ img của item
-                  const itemImg=document.createElement("img");
-                  itemImg.classList.add("box-cart__itemimg");//thêm class để css cho thẻ img 
-
-                  //tạo thẻ thông tin của item
-                  const itemDesc=document.createElement("div");
-                  itemDesc.classList.add("box-cart__itemdesc");//thêm class để css cho thẻ thông tin item 
-
-                  //tạo thẻ chứa title của item
-                  const itemtitle=document.createElement("a");
-                  itemtitle.classList.add("box-cart__itemtitle");//thêm class dể css cho thẻ chứa title 
-                  itemtitle.innerHTML=title;
-
-                  //tạo thẻ chứa giá  của item 
-                  const itemPrice=document.createElement("div");
-                  itemPrice.classList.add("box-cart__itemdelete");//thêm class dể css cho thẻ chứa giá của item 
-                  itemPrice.innerHTML=price
-
-                   //tạo thẻ chứa nút xóa của item 
-                  const itemDelete=document.createElement("div");
-                  itemDelete.classList.add("box-cart__itemdelete");//thêm class dể css cho thẻ chứa nút xóa 
-                  itemDelete.innerHTML="Xóa";
-
-                  //
-                  itemDesc.appendChild(itemtitle);
-                  itemDesc.appendChild(itemPrice);
-                  itemDesc.appendChild(itemDelete);
-
-                  //
-                  newItem.appendChild(itemImg);
-                  newItem.appendChild(itemDesc);
-                  boxcartlistitem.appendChild(newItem);
+                  const stringPrice=ArrayPrice?.join("")|| ""; // Ghép các số lại thành chuỗi
+                  const PriceInt=parseInt(stringPrice); // Chuyển chuỗi giá thành số (integer)
+                  console.log(PriceInt);
 
 
-                  setQualitiItem(listItem.length.toString());
+                  //tạo sản phẩm
+                const cartItem={
+                  index:1,
+                  id:petid,
+                  title:title,
+                  img:img,
+                  price:PriceInt // <--- Sử dụng PriceInt (giá đã chuyển thành số)
+                }
+
+                //tạo mảng mới và thêm sản phẩm vaof mảng
+                listItem.push(cartItem)
+
+                //lưu mảng vào trong sessionStorage
+                sessionStorage.setItem("cartList",JSON.stringify(listItem));
+
+                // Tính toán sumPrice (trong trường hợp này chỉ có 1 item)
+                let newSumPrice = listItem.reduce((accumulator, item) => {
+                  return accumulator + item.price;
+                }, 0);
 
 
+                // Cập nhật state giỏ hàng thông qua Context
+                setListItemCart(listItem); // Cập nhật listItemCart state
+                setQualitiItem(listItem.length.toString()); // Cập nhật qualitiItem state
+                setSumPrice(newSumPrice); // Cập nhật sumPrice state
 
+  
+  
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Thêm vào giỏ hàng thành công!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                }
+             }
+  
+      }
 
-              }
-            }
-         
-          })
-        }
-    },[])
 
   return (
     <>
@@ -201,33 +249,7 @@ console.log("id"+ petid);
              
             </div>
             <div className="product-infor__right">
-              <nav className="box-breadcrumb">
-                <div>
-                  <ul className="box-breadcrumb__list">
-                    <li className="box-breadcrumb__item">
-                     
-                      <Link className="box-breadcrumb__link" href="/">
-                        Trang chủ
-                      </Link>
-                      <FaChevronRight />
-                    </li>
-                    <li className="box-breadcrumb__item">
-                    
-                      <Link className="box-breadcrumb__link" href="/pets">
-                        Chó 
-                      </Link>
-                      <FaChevronRight />
-                    </li>
-                    <li className="box-breadcrumb__item">
-                      {" "}
-                      <Link className="box-breadcrumb__link" href="#">
-                      {productdetail?productdetail.name :"loading.."}
-                      </Link>
-           
-                    </li>
-                  </ul>
-                </div>
-              </nav>
+              <BoxBreadCrumb name={productdetail?productdetail.name :"loading.."} title="Chó"/>
               <h1 className="product-infor__title">{productdetail?productdetail.name :"loading.."}</h1>
               <div className="product-infor__price">{productdetail?productdetail.price? `${productdetail.price.toLocaleString("vi")} VND` :"loading.." : "loading.."}</div>
               <div className="product-infor__buttons">
@@ -235,11 +257,11 @@ console.log("id"+ petid);
                 <Link href="/contact">
                   <div className="button">Liên hệ</div>
                 </Link>
-                <a href="#">
-                  <div className="button button--outline" data-buttonadditem >
+                <div>
+                  <div className="button button--outline" data-buttonadditem  onClick={handleClick}>
                   <FaCartPlus/> Thêm vào giỏ hàng 
                   </div>
-                </a>
+                </div>
               </div>
               <div className="product-infor__tables">
                 <table>

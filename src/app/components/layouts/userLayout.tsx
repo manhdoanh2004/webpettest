@@ -2,7 +2,7 @@
 import {Header} from "../header/header"
 import { Footer } from "../footer/footer";
 
-
+import{CartProvider} from "../cart/CartContext"
 
 export default function UserLayout({
   children,
@@ -13,12 +13,15 @@ export default function UserLayout({
   
     <>
   
-
-        <Header/>
+  <CartProvider >
+  <Header/>
 
         {children}
 
         <Footer/>
+
+  </CartProvider>
+     
 
       </>
    
