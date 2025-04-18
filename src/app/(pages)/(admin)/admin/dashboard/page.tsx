@@ -8,14 +8,13 @@ export const metadata: Metadata = {
   
   
   };
-export default function Admin()
+export default function DashBoard()
 {
-    return (
-       
+    return(
         <>
-         <AdminLayout>
-         Trang admin
-            </AdminLayout>
-       </>
+          <AdminLayout>
+                  Trang admin
+                     </AdminLayout>
+        </>
     )
 }

@@ -141,7 +141,17 @@ export const Header = () => {
     const keySearch=event.target.search.value;
     if(keySearch)
     {
-      router.push(`/search?key=${keySearch}`)
+     
+        // Tạo URLSearchParams object
+        const page='1'// mặc định khi đến trang kết quả tìm kiếm thì luôn ở trang đầu tiên 
+       const params = new URLSearchParams();
+        params.append('key', keySearch);
+        params.append('page', page);
+
+    // tạo URL string bằng URLSearchParams.toString()
+         const url = `/search?${params.toString()}`;
+         
+         router.push(url); // Truyền URL string vào router
     }
   
   }
