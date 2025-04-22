@@ -6,9 +6,36 @@ import { FaTableCellsLarge } from "react-icons/fa6";
 import { FaGaugeHigh } from "react-icons/fa6";
 import { FaListCheck } from "react-icons/fa6";
 import { FaUserGroup } from "react-icons/fa6";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 export const SileBar=()=>
 {
+
+   const navLink = [
+      {
+        name: "Tổng quan",
+        href: "/admin/dashboard",
+        icon: <FaGaugeHigh/>,
+      },
+      {
+        name: "Quản lý sản phẩm",
+        href: "/admin/pet/list",
+        icon: <FaTableCellsLarge/> ,
+      },
+      {
+        name: " Quản lý đơn hàng",
+        href: "/admin/order/list",
+        icon: <FaListCheck/>,
+      },
+      {
+        name: " Thông tin liên hệ",
+        href: "/admin/contact",
+        icon: <FaUserGroup/>,
+      },
+    ];
+ 
+    const currentPath=usePathname();
+ 
   const router=useRouter();
   const handleLogout=async()=>
   {
@@ -37,15 +64,14 @@ export const SileBar=()=>
     <>
          <nav className="sider">
       <ul className="inner-menu">
-        <li><a className="active" href="#"><FaGaugeHigh/>Tổng quan</a></li>
-        <li><a href="#"><FaTableCellsLarge/> Quản lý sản phẩm</a></li>
-        <li><a href="#"><FaListCheck/>Quản lý đơn hàng</a></li>
-        <li><a href="#"><FaUserGroup/>Thông tin liên hệ</a></li>
+        {navLink?(<>{
+          navLink.map((item:any,index:any)=> <li key={index+1}><Link className={`${item.href==currentPath?"active":""}`} href={item.href}>{item.icon}{item.name}</Link></li>)
+        }</>):(<>{}</>)}
+  
       </ul>
       <hr/>
       <ul className="inner-menu">
-        <li><a href="#"><FaGear/>Cài đặt chung</a></li>
-        <li><a href="#"><FaUserGear/> Thông tin cá nhân</a></li>
+      
         <li><a className="inner-logout"  onClick={handleLogout}><FaPowerOff/>Đăng xuất</a></li>
       </ul>
     </nav>

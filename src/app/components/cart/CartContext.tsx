@@ -8,7 +8,7 @@ interface CartContextType {
   setQualitiItem: (itemCount: string) => void;
   sumPrice: number;
   setSumPrice: (price: number) => void;
-  listItemCart: any[]; // Hoặc kiểu dữ liệu cụ thể cho item giỏ hàng
+  listItemCart: any[]; 
   setListItemCart: (items: any[]) => void;
 }
 
