@@ -28,6 +28,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useCart } from "@/app/components/cart/CartContext";
 import BoxBreadCrumb from "@/app/components/boxbreadcrumb/BoxBreadCrumb";
+import Skeleton from "react-loading-skeleton";
 interface Section1Props {
   petid: string;
 }
@@ -249,11 +250,10 @@ export const  Section1= ({ petid }: Section1Props) => {
              
             </div>
             <div className="product-infor__right">
-              <BoxBreadCrumb name={productdetail?productdetail.name :"loading.."} title="Chó"/>
-              <h1 className="product-infor__title">{productdetail?productdetail.name :"loading.."}</h1>
-              <div className="product-infor__price">{productdetail?productdetail.price? `${productdetail.price.toLocaleString("vi")} VND` :"loading.." : "loading.."}</div>
+              <BoxBreadCrumb name={productdetail?productdetail.name :<Skeleton  style={{display:"inline-block"}}  />} title="Chó"/>
+              <h1 className="product-infor__title">{productdetail?productdetail.name :<Skeleton  className="product-infor__title" style={{display:"inline-block"}}  />}</h1>
+              <div className="product-infor__price">{productdetail?productdetail.price? `${productdetail.price.toLocaleString("vi")} VND` :<Skeleton   className="product-infor__price" style={{display:"inline-block"}}  /> : <Skeleton  className="product-infor__price" style={{display:"inline-block"}}  />}</div>
               <div className="product-infor__buttons">
-                {" "}
                 <Link href="/contact">
                   <div className="button">Liên hệ</div>
                 </Link>

@@ -221,7 +221,7 @@ export const Header = () => {
                       <div className="box-cart__itemdesc">
                         <Link
                           href={`${item.id}`}
-                          className="box-cart__itemtitle"
+                          className="box-cart__itemtitle"  prefetch={false}
                         >
                           {item.title}
                         </Link>
@@ -255,7 +255,7 @@ export const Header = () => {
           </div>
           <div className="box-cart__buttons">
           
-          {sumPrice==0?(<></>):<Link href={"/order"} className="button ">
+          {sumPrice==0?(<></>):<Link href={"/order"}  prefetch={false} className="button ">
               Thanh toán
             </Link>}
             
@@ -270,7 +270,7 @@ export const Header = () => {
               <FaBars />
             </div>
             <div className="header__logo">
-              <Link href="/">
+              <Link href="/" prefetch={false}>
                 <img alt="Monito" src="../Frame.svg" />
               </Link>
             </div>
@@ -278,7 +278,7 @@ export const Header = () => {
               <ul>
                 {navLink.map((item: any) => (
                   <li key={item.name}>
-                    <Link href={item.href}>{item.name}</Link>
+                    <Link href={item.href} prefetch={false}>{item.name} </Link>
                     <img
                       className={`${
                         currentPath == item.href ? "active" : ""

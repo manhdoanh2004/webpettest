@@ -11,8 +11,8 @@ export const metadata: Metadata = {
     
 
   };
-export default function Contact()
-{
+export default async function Contact()
+{  
     return(
         <>
         <UserLayout>

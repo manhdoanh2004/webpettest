@@ -1,4 +1,3 @@
-'use client'
 
 
 import { Section1 } from "./section1";
@@ -6,9 +5,9 @@ import { Section2 } from "./section2";
 import UserLayout from "@/app/components/layouts/userLayout";
 import { Suspense } from 'react';
 
-export default  function Petlist()
+export default async  function Petlist()
 {
-  
+
 return(
   <>
 

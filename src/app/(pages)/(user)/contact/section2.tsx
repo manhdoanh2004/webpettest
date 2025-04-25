@@ -1,6 +1,5 @@
 "use client";
 
-
 import { SlEnvolope } from "react-icons/sl";
 import { FaPhone } from "react-icons/fa6";
 import { FaLocationArrow } from "react-icons/fa";
@@ -8,184 +7,153 @@ import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
-import { useEffect } from "react";
-import Swal from 'sweetalert2'
-import { stringify } from "querystring";
-import { json } from "stream/consumers";
+
+import Swal from "sweetalert2";
+
 export const Section2 = () => {
+  interface formData {
+    fullName: string;
+    email: string;
+    phone: string;
+    address: string;
+    content: string;
+  }
 
+  async function fetchdata(formdata: formData) {
+    const res = await fetch("", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formdata),
+    });
+    const data = await res.json();
+  }
 
-  
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    const name = event.target.name;
+    const email = event.target.email;
+    const phonenumber = event.target.phonenumber;
+    const address = event.target.address;
+    const message = event.target.message;
 
-    interface formData
-    {
-        fullName:string,
-        email:string,
-        phone:string,
-        address:string,
-        content:string
-    }
+    const FullName: string = name.value;
+    const Email: string = email.value;
+    const PhoneNumber: string = phonenumber.value;
+    const Address: string = address.value;
+    const Message: string = message.value;
 
-   
-        async function fetchdata(formdata:formData) {
-  
-          const res= await fetch((""),{
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formdata),
+    if (FullName == "") {
+      name.style.borderColor = "red";
+      name.focus();
+      Swal.fire({
+        title: "Lỗi!",
+        text: "Vui lòng nhập vào họ tên của bạn ",
+        icon: "error",
+        confirmButtonText: "Oke",
+      });
+    } else {
+      if (Email == "") {
+        email.style.borderColor = "red";
+        email.focus();
+        Swal.fire({
+          title: "Lỗi!",
+          text: "Vui lòng nhập vào email của bạn ",
+          icon: "error",
+          confirmButtonText: "Oke",
+        });
+      } else {
+        const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/g;
+        if (!regex.test(Email)) {
+          email.style.borderColor = "red";
+          email.focus();
+          Swal.fire({
+            title: "Lỗi!",
+            text: "Vui lòng nhập đúng định dạng email ",
+            icon: "error",
+            confirmButtonText: "Oke",
           });
-          const data=await res.json(); 
-        }
-      
-      
-
-    const handleSubmit=(event:any)=>
-    {
-            event.preventDefault();
-            const name=event.target.name;
-            const email=event.target.email;
-            const phonenumber=event.target.phonenumber;
-            const address=event.target.address;
-            const message=event.target.message;
-
-
-            const FullName:string =name.value;
-            const Email:string =email.value;
-            const PhoneNumber:string =phonenumber.value;
-            const Address:string =address.value;
-            const Message:string =message.value;
-
-            if(FullName=="")
-            {
-              name.style.borderColor="red";
-              name.focus();
+        } else {
+          const regex =
+            /^(0|\+84)(3[2-9]|5[689]|7[06-9]|8[1-9]|9[0-46-9])[0-9]{7}$/g;
+          if (PhoneNumber == "") {
+            phonenumber.style.borderColor = "red";
+            phonenumber.focus();
+            Swal.fire({
+              title: "Lỗi!",
+              text: "Vui lòng nhập vào số điện thoại của bạn ",
+              icon: "error",
+              confirmButtonText: "Oke",
+            });
+          } else {
+            if (!regex.test(PhoneNumber)) {
+              phonenumber.style.borderColor = "red";
+              phonenumber.focus();
               Swal.fire({
-                title: 'Lỗi!',
-                text: 'Vui lòng nhập vào họ tên của bạn ',
-                icon: 'error',
-                confirmButtonText: 'Oke'
-              })
-              
-            }
-            else
-            {
-                if(Email=="")
-                {
-                  email.style.borderColor="red";
-                  email.focus();
+                title: "Lỗi!",
+                text: "Không tồn tại định dạng số điện thoại này  ",
+                icon: "error",
+                confirmButtonText: "Oke",
+              });
+            } else {
+              if (Address == "") {
+                address.style.borderColor = "red";
+                address.focus();
+                Swal.fire({
+                  title: "Lỗi!",
+                  text: "Vui lòng nhập vào địa chỉ của bạn  ",
+                  icon: "error",
+                  confirmButtonText: "Oke",
+                });
+              } else {
+                if (Message == "") {
+                  message.style.borderColor = "red";
+                  message.focus();
                   Swal.fire({
-                    title: 'Lỗi!',
-                    text: 'Vui lòng nhập vào email của bạn ',
-                    icon: 'error',
-                    confirmButtonText: 'Oke'})
-                }
-                else
-                {
-                  const regex=/^[a-zA-Z0-9._%+-]+@gmail\.com$/g;
-                  if(!regex.test(Email))
-                  { 
-                     email.style.borderColor="red";
-                     email.focus();
-                    Swal.fire({
-                      title: 'Lỗi!',
-                      text: 'Vui lòng nhập đúng định dạng email ',
-                      icon: 'error',
-                      confirmButtonText: 'Oke'})
+                    title: "Lỗi!",
+                    text: "Vui lòng nhập vào dữ liệu  của bạn ",
+                    icon: "error",
+                    confirmButtonText: "Oke",
+                  });
+                } else {
+                  const data: formData = {
+                    fullName: FullName,
+                    email: Email,
+                    phone: PhoneNumber,
+                    address: Address,
+                    content: Message,
+                  };
+                  console.log(data);
+                  fetchdata(data);
 
-                  }else 
-                  {
-                    const regex=/^(0|\+84)(3[2-9]|5[689]|7[06-9]|8[1-9]|9[0-46-9])[0-9]{7}$/g;
-                    if(PhoneNumber=="")
-                    {
-                      phonenumber.style.borderColor="red";
-                      phonenumber.focus();
-                      Swal.fire({
-                        title: 'Lỗi!',
-                        text: 'Vui lòng nhập vào số điện thoại của bạn ',
-                        icon: 'error',
-                        confirmButtonText: 'Oke'})
-                    }
-                    else
-                    {
-                      if(!regex.test(PhoneNumber))
-                      {
-                        phonenumber.style.borderColor="red";
-                        phonenumber.focus()
-                        Swal.fire({
-                          title: 'Lỗi!',
-                          text: 'Không tồn tại định dạng số điện thoại này  ',
-                          icon: 'error',
-                          confirmButtonText: 'Oke'})
-                      }
-                      else
-                      {
-                        if(Address=="")
-                        {
-                          address.style.borderColor="red";
-                        address.focus()
-                        Swal.fire({
-                          title: 'Lỗi!',
-                          text: 'Vui lòng nhập vào địa chỉ của bạn  ',
-                          icon: 'error',
-                          confirmButtonText: 'Oke'})
-                        }
-                        else
-                        {
-                          if(Message=="")
-                            {
-                              message.style.borderColor="red";
-                              message.focus()
-                              Swal.fire({
-                                title: 'Lỗi!',
-                                text: 'Vui lòng nhập vào dữ liệu  của bạn ',
-                                icon: 'error',
-                                confirmButtonText: 'Oke'})
-    
-                            }
-                            else
-                            {
-                              const data:formData ={
-                                fullName:FullName,
-                                email:Email,
-                                phone:PhoneNumber,
-                                address:Address,
-                                content:Message
-                              }
-                              console.log(data);
-                              fetchdata(data)
-                              
-                                name.value=email.value=phonenumber.value=message.value=address.value="";
-                                Swal.fire({
-                                  position: "center",
-                                  icon: "success",
-                                  title: "Gửi thành công ",
-                                  showConfirmButton: false,
-                                  timer: 1500
-                                });
-                            }
-                        }
-                    
-                      }
-                    }
-                  }
+                  name.value =
+                    email.value =
+                    phonenumber.value =
+                    message.value =
+                    address.value =
+                      "";
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Gửi thành công ",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
                 }
+              }
             }
-           
-         
-           
-          
-    }
-
-    const handleKeyup=(event:any)=>
-    {
-        if(event.target.value!="")
-        {
-          event.target.style.borderColor=" #FEC58D"
-        
+          }
         }
+      }
     }
+  };
+
+  const handleKeyup = (event: any) => {
+    if (event.target.value != "") {
+      event.target.style.borderColor = "#198754";
+    }
+  };
   return (
     <>
       <section className="contact-section2">
@@ -252,21 +220,50 @@ export const Section2 = () => {
                   Keep in touch
                 </h2>
                 <p className="contact-section2__rightinforDesc">
-                  We would love to hear from you and answer any questions you
-                  may have. You can contact us by filling out the form below,
-                  sending us an email, or calling us on our phone number. We
-                  will get back to you as soon as possible. You can also follow
-                  us on our social media platforms and subscribe to our
-                  newsletter to stay updated on our latest news and offers.
-                  Thank you for your interest and support.
+                  Chúng tôi rất mong nhận được phản hồi từ bạn và trả lời bất kỳ
+                  câu hỏi nào bạn có thể có. Bạn có thể liên hệ với chúng tôi
+                  bằng cách điền vào biểu mẫu bên dưới, gửi email cho chúng tôi
+                  hoặc gọi cho chúng tôi theo số điện thoại của chúng tôi. Chúng
+                  tôi sẽ trả lời bạn sớm nhất có thể. Bạn cũng có thể theo dõi
+                  chúng tôi trên các nền tảng truyền thông xã hội của chúng tôi
+                  và đăng ký nhận bản tin của chúng tôi để cập nhật tin tức và
+                  ưu đãi mới nhất của chúng tôi. Cảm ơn sự quan tâm và ủng hộ
+                  của bạn.
                 </p>
               </div>
-              <form className="contact-section2__rightform" onSubmit={(event)=>handleSubmit(event)}>
-                <input type="text" name="name" placeholder="Họ tên" onKeyUp={(event)=>handleKeyup(event)} />
-                <input type="text" name="email" placeholder="Email" onKeyUp={(event)=>handleKeyup(event)} />
-                <input type="text" name ="phonenumber" placeholder=" Số điện thoại" onKeyUp={(event)=>handleKeyup(event)} />
-                <input type="text" name ="address" placeholder="Địa chỉ" onKeyUp={(event)=>handleKeyup(event)} />
-                <textarea placeholder="Nhập tin nhắn" name="message" onKeyUp={(event)=>handleKeyup(event)} />
+              <form
+                className="contact-section2__rightform"
+                onSubmit={(event) => handleSubmit(event)}
+              >
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Họ tên"
+                  onKeyUp={(event) => handleKeyup(event)}
+                />
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  onKeyUp={(event) => handleKeyup(event)}
+                />
+                <input
+                  type="text"
+                  name="phonenumber"
+                  placeholder=" Số điện thoại"
+                  onKeyUp={(event) => handleKeyup(event)}
+                />
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Địa chỉ"
+                  onKeyUp={(event) => handleKeyup(event)}
+                />
+                <textarea
+                  placeholder="Nhập tin nhắn"
+                  name="message"
+                  onKeyUp={(event) => handleKeyup(event)}
+                />
                 <button>Gửi </button>
               </form>
             </div>

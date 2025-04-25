@@ -1,6 +1,6 @@
 'use client'
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Fillter } from "../pets/fillter";
 import Image from "next/image";
 import fillter from "../../../assets/Img/Filter.svg";
@@ -21,12 +21,12 @@ export default function Section1()
       const [pagination, setPagination] = useState<any | undefined>(undefined);
       const [productList, setProductList] = useState<any | undefined>(undefined);
       const [currentPage, setCurrentPage] = useState(1);
-    
+   
       //lần đầu tiên vào trang nếu chưa có biến page trên url thì mặc định chuyển đến page 1, 
       // nếu có rồi thì chuyển đến page có giá trị bằng biến page trên url
       useEffect(() => {
         const page = Number(searchParams.get("page")) || 1;
-        console.log("Chay vào đây")
+       
         setCurrentPage(page);
         setskip(limit * (page - 1));
       }, [searchParams,limit]);
@@ -44,6 +44,9 @@ export default function Section1()
         fetchData();
       }, [skip, limit,keyword]);
     
+
+     
+
       //mỗi khi chuyển trang thì set lại  giá trị cho biến page trên url
       const handlePageChange = (newPage: any) => {
         const params = new URLSearchParams(searchParams);
@@ -59,7 +62,7 @@ export default function Section1()
         
          <section className="sp-section-1">
         <div className="container">
-           <h1>Trang kết quả tìm kiếm : {keyword}</h1>
+       
           <div className="sp-section-1__wrap">
             <Fillter />
             <div className="sp-section-1__wrap-iteam">
@@ -73,7 +76,8 @@ export default function Section1()
               <div className="sp-section-1__list-iteam">
                 {productList ? (
                   <>
-                    {productList.products.map((item: any) => (
+                  {productList.products.length<1?(<>{`Không tìm thấy ${keyword} `}</>):
+                      (<> {productList.products.map((item: any) => (
                       <div className="product-item" key={item.id}>
                         <div className="section-2__image">
                           <Link href={`/pets/${item.id}`}>
@@ -103,7 +107,8 @@ export default function Section1()
                           </div>
                         </div>
                       </div>
-                    ))}
+                    ))}</>)}
+                   
                   </>
                 ) : (
                   <>
@@ -162,6 +167,7 @@ export default function Section1()
                 </button>
                 {pagination ? (
                   <>
+                  
                     {Array(parseInt(pagination))
                       .fill("")
                       .map((item, index) => (

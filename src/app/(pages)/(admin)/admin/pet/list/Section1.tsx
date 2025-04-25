@@ -5,9 +5,9 @@ export default function Seciton1() {
   return (
     <>
       
-        <h1 className="box-title">Quản lý tour</h1>
+        <h1 className="box-title">Quản lý sản phẩm</h1>
         <div className="admin-petlist-section1">
-          <div className="admin-petlist-section1__wrap">
+          {/* <div className="admin-petlist-section1__wrap">
             <div className="admin-petlist-section1__label" adminpet-label=''>
             <FaFilter/> Bộ lọc
             </div>
@@ -43,7 +43,7 @@ export default function Seciton1() {
             <div className="admin-petlist-section1__reset">
             <FaRotateLeft/> Xóa bộ lọc
             </div>
-          </div>
+          </div> */}
         </div>
      
        

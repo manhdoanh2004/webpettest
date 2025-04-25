@@ -1,10 +1,11 @@
+import Link from "next/link";
 import avatar from "../../assets/Img/Frame.svg"
 import { FaBars } from "react-icons/fa";
 export const HeaderAdmin=()=>
 {
     return (
         <> <header className="headerAdmin">
-        <div className="inner-logo"><a href="#"><span>Monito</span><span>Admin</span></a></div>
+        <div className="inner-logo"><Link href="/admin/dashboard"><span>Monito</span><span>Admin</span></Link></div>
         <div className="inner-wrap">
          
           <div className="inner-account">

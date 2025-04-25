@@ -26,7 +26,7 @@ export default  async function Petdetail( {
 {
   
   const{petid}= await params;
-  console.log(petid)
+  
 
     return(
         <>
