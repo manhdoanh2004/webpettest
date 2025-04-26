@@ -101,7 +101,7 @@ export const  Section1= ({ petid }: Section1Props) => {
                   sessionStorage.setItem("cartList",JSON.stringify(listItem));
   
                   // Tính toán lại sumPrice sau khi thêm item
-                  let newSumPrice = listItem.reduce((accumulator, item) => {
+                  const newSumPrice = listItem.reduce((accumulator, item) => {
                     return accumulator + item.price;
                   }, 0);
   
@@ -154,7 +154,7 @@ export const  Section1= ({ petid }: Section1Props) => {
                 sessionStorage.setItem("cartList",JSON.stringify(listItem));
 
                 // Tính toán sumPrice (trong trường hợp này chỉ có 1 item)
-                let newSumPrice = listItem.reduce((accumulator, item) => {
+                const newSumPrice = listItem.reduce((accumulator, item) => {
                   return accumulator + item.price;
                 }, 0);
 

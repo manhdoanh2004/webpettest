@@ -27,11 +27,7 @@ export const SileBar=()=>
         href: "/admin/order/list",
         icon: <FaListCheck/>,
       },
-      {
-        name: " Thông tin liên hệ",
-        href: "/admin/contact",
-        icon: <FaUserGroup/>,
-      },
+     
     ];
  
     const currentPath=usePathname();

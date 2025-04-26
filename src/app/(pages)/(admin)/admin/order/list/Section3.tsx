@@ -155,7 +155,7 @@ export default function Section3(){
                 </td>
                 <td>
                   <div className="admin-petlist-section3__buttons">
-                  <Link href={`/admin/pet/list/1`} className="admin-petlist-section3__edit">
+                  <Link href={`/admin/order/list/${1}`} className="admin-petlist-section3__edit">
                       <FaPenToSquare/>
                       </Link>
                       <button className="admin-petlist-section3__delete">

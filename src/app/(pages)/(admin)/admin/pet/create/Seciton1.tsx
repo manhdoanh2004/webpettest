@@ -9,7 +9,7 @@ export default function Seciton1() {
   const router=useRouter();
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
   const handleImageUploadSuccess = (imageUrl: string) => {
-    console.log("Section1 (Cha) nhận được URL:", imageUrl);
+ 
     setUploadedImageUrl(imageUrl);
    
   };

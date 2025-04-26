@@ -191,7 +191,7 @@ interface Section1Props {
             >
               Trạng thái
             </label>
-            <select id="status" name="status" defaultValue={"inactive"}>
+            <select id="status" name="status" defaultValue={"acitve"}>
               <option value="active">Hoạt động</option>
               <option value="inactive">Dừng hoạt động</option>
             </select>

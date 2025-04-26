@@ -11,11 +11,11 @@ export default function Section2()
 
   const router=useRouter();
     interface dataForm{
-        fullName:String,
-        phoneNumber:String,
-        email:String,
-        address:String,
-        note:String,
+        fullName:string,
+        phoneNumber:string,
+        email:string,
+        address:string,
+        note:string,
         listItem:Array<any>
     }
 

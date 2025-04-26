@@ -92,7 +92,7 @@ export const Header = () => {
       if (sessionStorage.getItem("cartList")) {
         const cartSession = sessionStorage.getItem("cartList") || "";
 
-        let listItem = [...JSON.parse(cartSession)];
+        const listItem = [...JSON.parse(cartSession)];
         setQualitiItem(listItem.length.toString());
         setListItemCart(listItem);
      
@@ -115,13 +115,13 @@ export const Header = () => {
 
     if (sessionStorage.getItem("cartList")) {
       const cartSession = sessionStorage.getItem("cartList") || "";
-      let list = [...JSON.parse(cartSession)];
+      const list = [...JSON.parse(cartSession)];
      
       // Lọc ra item cần xóa dựa trên petid
-      let listItem = list.filter((item: any) => item.index != petid);
+      const listItem = list.filter((item: any) => item.index != petid);
 
   
-      let sumprice = listItem.reduce((accumulator, Item) => { // Loại bỏ await vì reduce không phải promise
+      const sumprice = listItem.reduce((accumulator, Item) => { // Loại bỏ await vì reduce không phải promise
       
         return accumulator + Item.price;
       }, 0); // Giá trị khởi tạo của accumulator là 0
@@ -161,10 +161,10 @@ export const Header = () => {
     if (sessionStorage.getItem("cartList")) {
       const cartSession = sessionStorage.getItem("cartList") || "";
 
-      let listItem = [...JSON.parse(cartSession)];
+      const listItem = [...JSON.parse(cartSession)];
      
    
-      let sumprice = listItem.reduce((accumulator, Item) => {
+      const sumprice = listItem.reduce((accumulator, Item) => {
         return accumulator + Item.price;
       }, 0); // Giá trị khởi tạo của accumulator là 0
       

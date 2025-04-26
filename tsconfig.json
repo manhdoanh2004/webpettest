@@ -26,10 +26,10 @@
         "./src/*"
       ]
     },
-    // "typeRoots": [ // Thêm typeRoots
-    //   "./node_modules/@types",
+    "typeRoots": [ // Thêm typeRoots
+      "./node_modules/@types",
       
-    // ],
+    ],
     "skipLibCheck": true
   },
   "include": [
